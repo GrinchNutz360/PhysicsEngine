@@ -7,12 +7,20 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 
 */
 
-#include "raylib.h"
-
 #include "resource_dir.h"	// utility header for SearchAndSetResourceDir
+#include <vector>
+#include "Body.h"
+#include "World.h"
+#include "Random.h"
 
 int main ()
 {
+	
+	World world;
+	world.gravity = Vector2{ 0,  9.81f };
+
+	SetRandomSeed(5);
+	
 	// Tell the window to use vsync and work on high DPI displays
 	SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
 
@@ -28,7 +36,40 @@ int main ()
 	// game loop
 	while (!WindowShouldClose())		// run the loop until the user presses ESCAPE or presses the Close button on the window
 	{
-		// drawing
+		float dt = GetFrameTime();
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || (IsKeyDown(KEY_LEFT_CONTROL) && IsMouseButtonDown(MOUSE_BUTTON_LEFT)))
+		{
+			Body body;
+			body.position = GetMousePosition();
+			float angle = GetRandomFloat() * (2 * PI);
+			Vector2 direction;
+			direction.x = cosf(angle);
+			direction.y = sinf(angle);
+
+			body.velocity = direction * (50.0f + (GetRandomFloat() * 500));
+			body.acceleration = Vector2{ 0,0 };
+			body.size = 5.0f + (GetRandomFloat() * 20.0f);
+			body.restitution = 0.5f + (GetRandomFloat() * 0.5f);
+			body.mass = 1.0f;
+
+			world.AddBody(body);
+			
+		}
+		
+		//UPDATE
+		
+		if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+		{
+			world.Pull();
+		}
+		if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE))
+		{
+			world.Repel();
+		}
+		world.Step(dt);
+
+		// DRAW
 		BeginDrawing();
 
 		// Setup the back buffer for drawing (clear color and depth buffers)
@@ -39,6 +80,11 @@ int main ()
 
 		// draw our texture to the screen
 		DrawTexture(wabbit, 400, 200, WHITE);
+
+		for (const auto& body : world.bodies) 
+		{
+			DrawCircleV(body.position, body.size, RED);
+		}
 		
 		// end the frame and get ready for the next one  (display frame, poll input, etc...)
 		EndDrawing();

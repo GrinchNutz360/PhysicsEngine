@@ -18,11 +18,20 @@
     <ClInclude Include="include\resource_dir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Body.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\World.h" />
+    <ClInclude Include="src\Random.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.c">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Body.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icon.ico">

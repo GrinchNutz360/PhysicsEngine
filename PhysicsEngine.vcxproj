@@ -302,9 +302,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\resource_dir.h" />
+    <ClInclude Include="src\Body.h" />
+    <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\Body.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icon.ico" />
