@@ -1,12 +1,27 @@
 #include "World.h"
+#include "Effector.h"
 
-
+Vector2 World::gravity = { 0,  9.81f };
 void World::Step(float dt)
 {
 	for (auto& body : bodies) body.acceleration = Vector2{ 0,0 };
-	for (auto& body : bodies) body.AddForce(gravity * 100.0f);
+	for (auto& effector : effectors) effector->Apply(bodies);
+
+	if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+	{
+		Pull();
+	}
+	if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE))
+	{
+		Repel();
+	}
+
+	//force effector
+	for (auto& effector : effectors) effector->Apply(bodies);
 	for (auto& body : bodies) body.Step(dt);
 
+	UpdateCollision();
+	/*
 	for (auto& body : bodies)
 	{
 		if (body.position.x + body.size > GetScreenWidth())
@@ -30,6 +45,7 @@ void World::Step(float dt)
 			body.velocity.y *= -body.restitution;
 		}
 	}
+	*/
 }
 
 void World::Draw()
@@ -38,11 +54,17 @@ void World::Draw()
 	{
 		body.Draw();
 	}
+	for (auto& effector : effectors) effector->Draw();
 }
 
 void World::AddBody(const Body & body)
 {
 	bodies.push_back(body);
+}
+
+void World::AddEffector(Effector* effector)
+{
+	effectors.push_back(effector);
 }
 
 void World::Pull() 
@@ -73,6 +95,38 @@ void World::Repel()
 		}
 	}
 	DrawCircleLinesV(position, 100, RED);
+}
+
+void World::UpdateCollision()
+{
+	contacts.clear();
+	CreateContacts(bodies, contacts);
+	SeparateContacts(contacts);
+
+	// collision
+	for (auto& body : bodies)
+	{
+		if (body.position.x + body.size > GetScreenWidth())
+		{
+			body.position.x = GetScreenWidth() - body.size;
+			body.velocity.x *= -body.restitution;
+		}
+		if (body.position.x - body.size < 0)
+		{
+			body.position.x = body.size;
+			body.velocity.x *= -body.restitution;
+		}
+		if (body.position.y + body.size > GetScreenHeight())
+		{
+			body.position.y = GetScreenHeight() - body.size;
+			body.velocity.y *= -body.restitution;
+		}
+		if (body.position.y - body.size < 0)
+		{
+			body.position.y = body.size;
+			body.velocity.y *= -body.restitution;
+		}
+	}
 }
 
 

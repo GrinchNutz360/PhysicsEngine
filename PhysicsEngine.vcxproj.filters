@@ -23,6 +23,10 @@
     </ClInclude>
     <ClInclude Include="src\World.h" />
     <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\Effector.h" />
+    <ClInclude Include="src\PointEffector.h" />
+    <ClInclude Include="src\GravityEffector.h" />
+    <ClInclude Include="src\collision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -32,6 +36,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\World.cpp" />
+    <ClCompile Include="src\PointEffector.cpp" />
+    <ClCompile Include="src\GravityEffector.cpp" />
+    <ClCompile Include="src\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icon.ico">
