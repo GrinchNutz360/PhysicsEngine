@@ -4,7 +4,12 @@
 Vector2 World::gravity = { 0,  9.81f };
 void World::Step(float dt)
 {
-	for (auto& body : bodies) body.acceleration = Vector2{ 0,0 };
+	for (auto& body : bodies)
+	{
+		body.acceleration = Vector2{ 0, 0 };
+		body.AddForce(gravity, ForceMode::Acceleration);
+	}
+
 	for (auto& effector : effectors) effector->Apply(bodies);
 
 	if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
@@ -15,6 +20,8 @@ void World::Step(float dt)
 	{
 		Repel();
 	}
+
+
 
 	//force effector
 	for (auto& effector : effectors) effector->Apply(bodies);
@@ -46,6 +53,7 @@ void World::Step(float dt)
 		}
 	}
 	*/
+
 }
 
 void World::Draw()
@@ -102,6 +110,7 @@ void World::UpdateCollision()
 	contacts.clear();
 	CreateContacts(bodies, contacts);
 	SeparateContacts(contacts);
+	ResolveContacts(contacts);
 
 	// collision
 	for (auto& body : bodies)

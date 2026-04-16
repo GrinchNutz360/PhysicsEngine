@@ -21,7 +21,7 @@ int main ()
 	World world;
 	//world.AddEffector(new PointEffector(Vector2{ 200, 200 }, 100, 30000.0f));
 	//world.AddEffector(new PointEffector(Vector2{ 600, 600 }, 100, -30000.0f));
-	//world.AddEffector(new GravityEffector(10000.0f));
+	//world.AddEffector(new GravityEffector(1000.0f));
 
 	SetRandomSeed(5);
 	
@@ -58,14 +58,15 @@ int main ()
 			direction.x = cosf(angle);
 			direction.y = sinf(angle);
 			
-			body.AddForce(direction * (50.0f + GetRandomFloat() * 500) * 0.001f), ForceMode::VelocityChange;
+			body.AddForce(direction * (50.0f + GetRandomFloat() * 500), ForceMode::VelocityChange);
+			
 
 			body.acceleration = Vector2{ 0,0 };
 			body.size = 5.0f + (GetRandomFloat() * 20.0f);
 			body.restitution = 0.5f + (GetRandomFloat() * 0.5f);
 			body.mass = body.size;
 			body.inverseMass = (body.bodyType == BodyType::Static) ? 0 : 1.0f / body.mass;
-			body.gravityScale = 0.0f;
+			body.gravityScale = 1.0f;
 			body.damping = 0.2f;
 
 			world.AddBody(body);
