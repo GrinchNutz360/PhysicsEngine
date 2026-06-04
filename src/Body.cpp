@@ -10,7 +10,7 @@ void Body::Step(float dt)
 
 void Body::Draw() const
 {
-	DrawCircleV(position, size, RED);
+	DrawCircleV(position, size, color);
 	DrawCircleLinesV(position, size, WHITE);
 }
 

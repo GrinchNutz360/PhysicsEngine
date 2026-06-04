@@ -5,9 +5,9 @@
 
 enum class BodyType
 {
-	Static,
+	Dynamic,
 	Kinematic,
-	Dynamic
+	Static
 };
 
 enum class ForceMode
@@ -30,6 +30,7 @@ struct Body
 	float restitution = 1.0f;
 	float gravityScale = 1.0f;
 	float damping = 0.0f;
+	Color color = RED;
 
 	void Step(float dt);
 	void Draw() const;
