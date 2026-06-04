@@ -1,3 +1,35 @@
+* My Physics Engine
+Below this is the Raylib-Quickstart readme that I kept just in case.
+
+* Point:
+  The entire point of this physics engine is to have satisfying springs, gravitation, push and pull, and drag all affecting circles floating around.
+  Each thing on the UI can be changed to customize the experience of the phsyics engine including but not limited to: changing gravity, fps, spring stiffness and damping,
+  and multiple area affectors.
+
+*Controls
+LMB - spawn circles/interact with ui
+RMB - (hold) connects spring line from one circle, drag to other
+(hold with LEFT SHift) drags circle on spring following mouse
+LEFT CONTROL - (hold) spawns multiple circles when combined with LMB
+RIGHT SHIFT - Paired with LMB activates effectors
+TAB - Disables Right side GUI
+
+*PHYSICS CONTROLS 
+<img width="477" height="363" alt="Screenshot 2026-06-04 130037" src="https://github.com/user-attachments/assets/a238214e-6a6b-4f1b-aa77-08b791d0cd08" />
+
+*SPRING CONTROLS
+<img width="454" height="213" alt="Screenshot 2026-06-04 130131" src="https://github.com/user-attachments/assets/40cd7015-998b-4251-9dfa-e70ead347732" />
+
+*EFFECTOR CONTROLS
+<img width="451" height="228" alt="Screenshot 2026-06-04 130205" src="https://github.com/user-attachments/assets/a9297c16-6522-4e4a-b14e-af3e04a9dc59" />
+
+*FPS AND GRAVITY CONTROLS
+<img width="463" height="208" alt="Screenshot 2026-06-04 130231" src="https://github.com/user-attachments/assets/dcbe6ede-7458-41af-b32f-50284c779450" />
+
+*ALL TOGETHER
+<img width="1877" height="1185" alt="Screenshot 2026-06-04 130345" src="https://github.com/user-attachments/assets/c35c9159-4990-4150-95d0-c0e4be9c70e0" />
+
+
 # Raylib-Quickstart
 A simple cross platform template for setting up a project with the bleeding edge raylib code.
 Works with C or C++.
