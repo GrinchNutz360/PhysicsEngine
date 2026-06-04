@@ -167,10 +167,10 @@ void GuiPhysics(GuiPhysicsState* state)
 		GuiCheckBox((Rectangle) { state->anchor02.x + 104, state->anchor02.y + 344, 16, 16 }, "AUTO LENGTH", & state->SpringAutoLengthChecked);
 		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 320, 184, 16 }, "LENGTH", GUI_TEXT(state->SpringLengthValue), & state->SpringLengthValue, 0, 3);
 		GuiGroupBox((Rectangle) { state->anchor02.x + 8, state->anchor02.y + 392, 296, 136 }, "EFFECTOR");
-		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 448, 184, 16 }, "SIZE", GUI_TEXT(state->EffectorSizeValue), & state->EffectorSizeValue, 0, 3);
-		GuiSlider((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 472, 184, 16 }, "FORCE", GUI_TEXT(state->EffectorForceValue), & state->EffectorForceValue, 0, 3);
-		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 496, 184, 16 }, "ANGLE", GUI_TEXT(state->EffectorAngleValue), & state->EffectorAngleValue, 0, 3);
-		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 208, 184, 16 }, "VELOCITY", GUI_TEXT(state->BodyVelocityValue), & state->BodyVelocityValue, 0, 3);
+		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 448, 184, 16 }, "SIZE", GUI_TEXT(state->EffectorSizeValue), & state->EffectorSizeValue, 0, 5);
+		GuiSlider((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 472, 184, 16 }, "FORCE", GUI_TEXT(state->EffectorForceValue), & state->EffectorForceValue, 0, 5);
+		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 496, 184, 16 }, "ANGLE", GUI_TEXT(state->EffectorAngleValue), & state->EffectorAngleValue, 0, 360);
+		GuiSliderBar((Rectangle) { state->anchor02.x + 80, state->anchor02.y + 208, 184, 16 }, "VELOCITY", GUI_TEXT(state->BodyVelocityValue), & state->BodyVelocityValue, 0, 5);
 		GuiGroupBox((Rectangle) { state->anchor02.x + 8, state->anchor02.y + 32, 296, 208 }, "BODY");
 		if (GuiDropdownBox((Rectangle) { state->anchor02.x + 32, state->anchor02.y + 48, 240, 24 }, "DYNAMIC;KINEMATIC;STATIC", & state->BodyTypeActive, state->BodyTypeEditMode)) state->BodyTypeEditMode = !state->BodyTypeEditMode;
 		if (GuiDropdownBox((Rectangle) { state->anchor02.x + 32, state->anchor02.y + 408, 240, 24 }, "GRAVITATION;POINT;AREA;DRAG", & state->EffectorTypeActive, state->EffectorTypeEditMode)) state->EffectorTypeEditMode = !state->EffectorTypeEditMode;
